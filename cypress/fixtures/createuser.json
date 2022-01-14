@@ -1,0 +1,12 @@
+{
+    "forCreating": {
+        "name" : "Test QA",
+        "gender": "male",
+        "status" : "active"
+    },
+    "forUpdating":{
+        "name" : "Test QA update",
+        "gender": "female",
+        "status" : "inactive"
+    }
+}
