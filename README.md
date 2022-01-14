@@ -1,6 +1,6 @@
 # testassignment
 !!!!!Note that user can be deleted and that the token may not work!!!! 
-If so, update tests with existing users and provide project with new token. 
+If tests don't work, update tests with existing users and with a new token. 
 How to create token can be found on the following link: https://gorest.co.in/
 
 How to open project: 
