@@ -1,3 +1,4 @@
 {
-    "baseUrl" : "https://gorest.co.in/public/v1"
+    "baseUrl" : "https://gorest.co.in/public/v1",
+    "ignoreTestFiles" : "*allFunctions.js"
 }
