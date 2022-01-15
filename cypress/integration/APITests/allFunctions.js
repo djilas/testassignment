@@ -11,5 +11,21 @@ class commonMethods{
         console.log(str);
         return str + '@gmail.com';
     }
+
+    getRandomUserStatus(){
+
+        const status = ["active", "inactive"];
+
+        let randomIndex = Math.floor(Math.random() * status.length); 
+        let randomElement = status[randomIndex];
+
+        return randomElement
+    }
+
+    randomNumberOfPage(max) { 
+        let min = 1;
+        return Math.floor(Math.random() * (max - min) + min);
+    } 
+
 }
 export default commonMethods

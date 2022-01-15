@@ -10,6 +10,8 @@ const dataForUser = require('../../fixtures/createuser.json');
  * We can get any id from the GET respons but considering that a lot of people probably work on this open API endpoints I'll create a new user and then delete it
  */
 
+/** */
+
 context('Delete Api Tests', () => {
 
     const func = new commonMethods();
@@ -110,4 +112,47 @@ context('Delete Api Tests', () => {
             expect(response.body.data.message).to.eq('Authentication failed');
         })
     })
+})
+
+const tokens = require('../../fixtures/example.json')
+
+context('Delete user with before or beforeEach method', () => {
+
+    const func = new commonMethods();
+    let accessToken = tokens.token;
+    let email = func.generateRandomEmail(8);
+
+    before(function () {
+        cy.request({
+            method: 'POST',
+            url : '/users/',
+            headers: {
+                'authorization' : 'Bearer ' + accessToken
+            },
+            body : {
+                'name' : dataForUser.forCreating.name,
+                'gender': dataForUser.forCreating.gender,
+                'email' : email,
+                'status' : dataForUser.forCreating.status
+            }
+        }).then((response) => { 
+            userId = response.body.data.id;
+            numberOfPages = response.body.meta.pagination.pages;
+            console.log(userId);
+        })
+    })
+
+    it('Delete user test', function () {
+        
+        cy.request({
+            method: 'DELETE',
+            url: `/users/${userId}`,
+            headers: {
+                'authorization' : 'Bearer ' + accessToken
+            }
+        }).then((response) => {
+            expect(response.status).to.eq(204);
+        })
+    })
+
 })
