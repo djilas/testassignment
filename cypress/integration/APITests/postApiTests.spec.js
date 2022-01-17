@@ -15,7 +15,6 @@ context('Post Api Tests', () => {
     let invalidEmail = 'testgmail.com';
 
     before(function () {
-
         cy.fixture('example').then(function (data){
             accessToken = data.token;
             wrongAccessToken = data.wrongToken;
@@ -47,7 +46,7 @@ context('Post Api Tests', () => {
         })
     })
 
-    it('Create user with already existing email', function () {
+    it('Create user with already existing email test', function () {
         cy.request({
             method: 'POST',
             url : '/users/',
@@ -68,7 +67,7 @@ context('Post Api Tests', () => {
         })
     })
 
-    it('Create user with invalid email', function () {
+    it('Create user with invalid email test', function () {
         cy.request({
             method: 'POST',
             url : '/users/',
@@ -89,8 +88,7 @@ context('Post Api Tests', () => {
         })
     })
 
-    //This test is failed test,
-    it('Creat user with wrong authorization token', function () {
+    it('Creat user with wrong authorization token test', function () {
         cy.request({
             method: 'POST',
             url : '/users/',
@@ -110,7 +108,7 @@ context('Post Api Tests', () => {
         })
     })
 
-    it('Sending blank body for creating user request', function () {
+    it('Sending blank body for creating user request test', function () {
         cy.request({
             method: 'POST',
             url : '/users/',
@@ -155,7 +153,7 @@ context('Post Api Tests', () => {
         })
     })
 
-    it('Creat user test', function () {
+    it('Creat user test test', function () {
         cy.request({
             method: 'POST',
             url : '/users/',

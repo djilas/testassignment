@@ -5,7 +5,7 @@ import commonMethods from './allFunctions';
 const dataForUser = require('../../fixtures/createuser.json');
 const tokens = require('../../fixtures/example.json')
 
-context('Post Api tests', () => {
+context('Put Api tests', () => {
 
     const func = new commonMethods();
     let accessToken = tokens.token;

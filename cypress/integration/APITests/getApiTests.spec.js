@@ -34,7 +34,6 @@ context('GET API tests', () => {
     })
 
     it('Get the first page of users test', () =>{
-
         cy.request({
             method: 'GET',
             url: '/users/',
@@ -52,7 +51,6 @@ context('GET API tests', () => {
     })
 
     it(`Get a user by id test`, () => {
-
         cy.request({
             method: 'GET',
             url: `/users/${userId}`,
@@ -67,7 +65,6 @@ context('GET API tests', () => {
     })
 
     it(`Try to get user that doesn't exists`, () => {
-
         cy.request({
             method: 'GET',
             url: `/users/3`,
@@ -83,7 +80,6 @@ context('GET API tests', () => {
     })
 
     it(`Get a page`, () => {
-
         let webPage = func.randomNumberOfPage(numberOfPages);
         
         cy.request({

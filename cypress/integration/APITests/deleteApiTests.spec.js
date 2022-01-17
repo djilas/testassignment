@@ -10,8 +10,6 @@ const dataForUser = require('../../fixtures/createuser.json');
  * We can get any id from the GET respons but considering that a lot of people probably work on this open API endpoints I'll create a new user and then delete it
  */
 
-/** */
-
 context('Delete Api Tests', () => {
 
     const func = new commonMethods();
@@ -22,7 +20,6 @@ context('Delete Api Tests', () => {
     let invalidUserId = 525252662;
 
     before(function () {
-
         cy.fixture('example').then(function (data){
             accessToken = data.token;
             invalidToken = data.wrongToken;
@@ -68,8 +65,7 @@ context('Delete Api Tests', () => {
         })
     })
 
-    it('Delete user with invalid id', function () {
-        
+    it('Delete user with invalid id test', function () {    
         cy.request({
             method: 'DELETE',
             url: `/users/${invalidUserId}`,
@@ -83,8 +79,7 @@ context('Delete Api Tests', () => {
         })
     })
 
-    it('Delete user with invalid token', function () {
-        
+    it('Delete user with invalid token test', function () {
         cy.request({
             method: 'DELETE',
             url: `/users/${idOfUserForDeleting}`,
@@ -94,21 +89,6 @@ context('Delete Api Tests', () => {
             failOnStatusCode : false
         }).then((response) => {
             expect(response.status).to.eq(401);
-            expect(response.body.data.message).to.eq('Authentication failed');
-        })
-    })
-
-    //Deleting the user without creating it frist [WILL FAIL]
-    it('Delete user test', function () {
-        
-        cy.request({
-            method: 'DELETE',
-            url: `/users/${userId}`,
-            headers: {
-                'authorization' : 'Bearer ' + accessToken
-            }
-        }).then((response) => {
-            expect(response.status).to.eq(200);
             expect(response.body.data.message).to.eq('Authentication failed');
         })
     })
@@ -143,7 +123,6 @@ context('Delete user with before or beforeEach method', () => {
     })
 
     it('Delete user test', function () {
-        
         cy.request({
             method: 'DELETE',
             url: `/users/${userId}`,
@@ -154,5 +133,4 @@ context('Delete user with before or beforeEach method', () => {
             expect(response.status).to.eq(204);
         })
     })
-
 })

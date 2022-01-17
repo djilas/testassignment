@@ -26,6 +26,5 @@ class commonMethods{
         let min = 1;
         return Math.floor(Math.random() * (max - min) + min);
     } 
-
 }
 export default commonMethods
