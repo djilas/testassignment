@@ -50,6 +50,25 @@ context('GET API tests', () => {
         })
     })
 
+    it('Get the all pages of users test', () =>{
+        for(let i = 1; i < numberOfPages; i++){
+            cy.request({
+                method: 'GET',
+                url: '/users/',
+                headers: {
+                    'authorization' : 'Bearer ' + accessToken
+                }
+            }).then((response) => {
+                expect(response.status).to.eq(200);
+                expect(response.body).to.not.be.null;
+                expect(response.body.meta.pagination.limit).to.eq(20);
+                expect(response.body.data).to.be.length(20);
+
+                numberOfPages = response.body.meta.pagination.pages;
+            })
+        }
+    })
+
     it(`Get a user by id test`, () => {
         cy.request({
             method: 'GET',
@@ -107,21 +126,26 @@ context('GET API tests', () => {
     })
 
     it(`Get a users by ${userStatus} status `, () => {
-        console.log(userStatus)
-        cy.request({
-            method: 'GET',
-            url: '/users/',
-            headers: {
-                'authorization' : 'Bearer ' + accessToken
-            },
-            qs : {
-                status: `${userStatus}`
-            }
-        }).then((response) => {
 
-            for(let i = 0; i < response.body.meta.pagination.limit; i++){
-                expect(response.body.data[i].status).to.eq(userStatus);
-            }    
-        })
+        console.log(userStatus)
+        for(let i = 1; i < numberOfPages; i++){
+            cy.request({
+                method: 'GET',
+                url: '/users/',
+                headers: {
+                    'authorization' : 'Bearer ' + accessToken
+                },
+                qs : {
+                    page: i.toString(),
+                    status: `${userStatus}`
+                }
+            }).then((response) => {
+
+                for(let n = 0; n < response.body.data.length; n++){
+                    cy.log(response.body.data[n].status);
+                    expect(response.body.data[n].status).to.eq(userStatus);
+                }    
+            })
+        }
     })
 })
