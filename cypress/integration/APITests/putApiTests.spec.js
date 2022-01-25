@@ -122,6 +122,7 @@ context('Put Api tests', () => {
                 'authorization' : 'Bearer ' + accessToken
             },
             body : {
+                email: ""
             },
             failOnStatusCode : false
         }).then((response) => { 

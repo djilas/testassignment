@@ -57,6 +57,9 @@ context('GET API tests', () => {
                 url: '/users/',
                 headers: {
                     'authorization' : 'Bearer ' + accessToken
+                },
+                qs : {
+                    page: i
                 }
             }).then((response) => {
                 expect(response.status).to.eq(200);
